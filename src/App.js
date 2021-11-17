@@ -3,17 +3,21 @@ import './App.css';
 import Home from './components/Home';
 import About from './components/About';
 import Navbar from './components/Navbar';
-import { Switch, Route } from 'react-router-dom';
-
+import { Routes, Route } from 'react-router-dom';
+import ProjectDetails from './components/ProjectDetails';
+import {projects as Projects} from './components/Projects'
 class App extends Component {
   render() {
     return (
       <div className="App">
         <Navbar />
-        <Switch>
-          <Route expect path='/' component={Home} />
-          <Route expect path='/about' component={About} />
-        </Switch>
+        <Routes>
+          <Route path='/' element={<Home/>} />
+          <Route path='/about' element={<About/>} />
+          <Route path='/projects' element={<Projects/>}>
+            <Route path=':id' element={<ProjectDetails animate={true}/>}/>
+          </Route>
+        </Routes>
       </div>
     );
   }
